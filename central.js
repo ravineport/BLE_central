@@ -33,14 +33,21 @@ noble.on('discover', function(peripheral) {
 
   peripheral.connect(function(err) {
     peripheral.discoverServices([serviceUuid], function(err, services) {
+
       services.forEach(function(service) {
         console.log('found service:', service.uuid);
         service.discoverCharacteristics([], function(err, characteristics) {
+
           characteristics.forEach(function(characteristic) {
             console.log('found characteristic:', characteristic.uuid);
+            if (commandCharacteristicUuid == characteristic.uuid){
+              droneCommandCharacteristic = characteristic;
+            }
           });
+
         });
       });
+
     });
   });
 });

@@ -10,7 +10,9 @@ server.listen(8080, function() {
 });
 
 var serviceUuid = '13333333333333333333333333333337';
-var commandCharacteristicUuid =    '13333333333333333333333333330001';
+var commandCharacteristicUuid = '13333333333333333333333333330001';
+
+var droneCommandCharacteristic = null;
 
 noble.on('stateChange', function(state) {
   if (state === 'poweredOn') {
@@ -47,44 +49,44 @@ function respond(req, res, next) {
   res.send('api ' + req.params.name);
   if (req.params.name == 'go') {
     console.log('go');
-    var crust = new Buffer(1);
-    crust.writeUInt8(1, 0);
-    pizzaCrustCharacteristic.write(crust, false);
+    var command = new Buffer(1);
+    command.writeUInt8(1, 0);
+    droneCommandCharacteristic.write(command, false);
   }
   if (req.params.name == 'back') {
     console.log('back');
-    var crust = new Buffer(1);
-    crust.writeUInt8(2, 0);
-    pizzaCrustCharacteristic.write(crust, false);
+    var command = new Buffer(1);
+    command.writeUInt8(2, 0);
+    droneCommandCharacteristic.write(command, false);
   }
   if (req.params.name == 'right') {
     console.log('right');
-    var crust = new Buffer(1);
-    crust.writeUInt8(3, 0);
-    pizzaCrustCharacteristic.write(crust, false);
+    var command = new Buffer(1);
+    command.writeUInt8(3, 0);
+    droneCommandCharacteristic.write(command, false);
   }
   if (req.params.name == 'left') {
     console.log('left');
-    var crust = new Buffer(1);
-    crust.writeUInt8(4, 0);
-    pizzaCrustCharacteristic.write(crust, false);
+    var command = new Buffer(1);
+    command.writeUInt8(4, 0);
+    droneCommandCharacteristic.write(command, false);
   }
   if (req.params.name == 'jump') {
     console.log('jump');
-    var crust = new Buffer(1);
-    crust.writeUInt8(5, 0);
-    pizzaCrustCharacteristic.write(crust, false);
+    var command = new Buffer(1);
+    command.writeUInt8(5, 0);
+    droneCommandCharacteristic.write(command, false);
   }
   if (req.params.name == 'give') {
     console.log('give');
-    var crust = new Buffer(1);
-    crust.writeUInt8(6, 0);
-    pizzaCrustCharacteristic.write(crust, false);
+    var command = new Buffer(1);
+    command.writeUInt8(6, 0);
+    droneCommandCharacteristic.write(command, false);
   }
   if (req.params.name == 'feed') {
     console.log('feed');
-    var crust = new Buffer(1);
-    crust.writeUInt8(7, 0);
-    pizzaCrustCharacteristic.write(crust, false);
+    var command = new Buffer(1);
+    command.writeUInt8(7, 0);
+    droneCommandCharacteristic.write(command, false);
   }
 }
